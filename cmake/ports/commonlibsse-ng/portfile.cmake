@@ -1,10 +1,22 @@
 vcpkg_from_github(
         OUT_SOURCE_PATH SOURCE_PATH
-        REPO CharmedBaryon/CommonLibSSE
-        REF b93280e832f263dbef44e44cbe2936622a02f91a
-        SHA512  c98a0dde8fab45d0b5ffc8241bc6437fc1b2855e5577e9b66fe4e237c35c7111c3288f0ef7a637b2a399dd38938221619331e3b49504b76ac0e1a0a2034715a6
+        REPO alandtse/CommonLibSSE-NG
+        REF 70c1acd5261210982bd52f6d4468a082fe04d798
+        SHA512  4b13f15f05c220f9754260086efa1688566ad8c60c9f8002110f342976d0dc653deffd39745b8398360092e21b83c40040c6a88d02aec2c1ee1eef98396e53a2
         HEAD_REF main
 )
+
+vcpkg_from_github(
+    OUT_SOURCE_PATH SUBMODULE_PATH
+    REPO ValveSoftware/openvr
+    #commit is defined in alandtse/CommonLibSSE-NG/extern/openvr submodule
+    REF 60eb187801956ad277f1cae6680e3a410ee0873b
+    SHA512 bb85b4705e7095ac65df9969112b2df8930cee7917cc5f14231c5a0ffeed7a73ffa60727fd32f8786a403656f95a3ec0f80bf3ceabc5b8ede964aefb920bc718
+)
+
+#move openvr to extern
+file(REMOVE_RECURSE "${SOURCE_PATH}/extern/openvr")
+file(COPY "${SUBMODULE_PATH}/" DESTINATION "${SOURCE_PATH}/extern/openvr")
 
 vcpkg_configure_cmake(
         SOURCE_PATH "${SOURCE_PATH}"
@@ -20,10 +32,19 @@ file(GLOB CMAKE_CONFIGS "${CURRENT_PACKAGES_DIR}/share/CommonLibSSE/CommonLibSSE
 file(INSTALL ${CMAKE_CONFIGS} DESTINATION "${CURRENT_PACKAGES_DIR}/share/CommonLibSSE")
 file(INSTALL "${SOURCE_PATH}/cmake/CommonLibSSE.cmake" DESTINATION "${CURRENT_PACKAGES_DIR}/share/CommonLibSSE")
 
-file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/debug/include")
-file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/share/CommonLibSSE/CommonLibSSE")
+#fix directxtk with portfile
+set(CONFIG_FILE
+    "${CURRENT_PACKAGES_DIR}/share/CommonLibSSE/CommonLibSSEConfig.cmake"
+)
+file(READ "${CONFIG_FILE}" CONFIG_CONTENT)
+file(WRITE "${CONFIG_FILE}"
+    "include(CMakeFindDependencyMacro)\nfind_dependency(directxtk CONFIG)\n${CONFIG_CONTENT}"
+)
 
-file(
-        INSTALL "${SOURCE_PATH}/LICENSE"
-        DESTINATION "${CURRENT_PACKAGES_DIR}/share/${PORT}"
-        RENAME copyright)
+#copy openvr headers
+file(INSTALL
+    "${SOURCE_PATH}/extern/openvr/headers/"
+    DESTINATION "${CURRENT_PACKAGES_DIR}/include"
+)
+
+file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/share/CommonLibSSE/CommonLibSSE")

@@ -8,14 +8,20 @@
     "plugin": {
       "description": "SKSE plugin",
       "dependencies": [
-        "commonlibsse-ng",
-        "spdlog",
-        "boost-algorithm"
+        "spdlog"
       ]
+    },
+    "clibng-support": {
+        "description": "clibng dependencies",
+        "dependencies": [
+            "directxtk",
+            "rapidcsv"
+        ]
     }
   },
   "default-features": [
-    "plugin"
+    "plugin",
+    "clibng-support"
   ],
-  "builtin-baseline": "a4275b7eee79fb24ec2e135481ef5fce8b41c339"
+  "builtin-baseline": "9e593bb18ea69cc5095e012465dcd675a822ed0d"
 }

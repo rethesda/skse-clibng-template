@@ -14,7 +14,9 @@
 
 #### ***CommonLibSSE-NG***
 
-To use CommonLibSSE-NG as a git-submodule instead of overlay-ports, clone it to extern/CommonLibSSE-NG and edit vcpkg.json removing "commonlibsse-ng" and adding its dependencies.
+To use CommonLibSSE-NG as a git-submodule instead of overlay-ports, clone it to extern/CommonLibSSE-NG and edit vcpkg.json removing "commonlibsse-ng" and adding its dependencies (like "directxtk").
+
+To use CommonLibSSE-NG as port, edit vcpkg.json adding "commonlibsse-ng".
 
 ## ***Building***
 

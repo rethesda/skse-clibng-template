@@ -28,36 +28,42 @@
       "name": "release-novr",
       "displayName": "Release NG-NoVR",
       "configurePreset": "no-vr",
+      "description": "Force clibng-sse build without VR",
       "configuration": "Release"
     },
     {
       "name": "debug-novr",
       "displayName": "Debug NG-NoVR",
       "configurePreset": "no-vr",
+      "description": "Force clibng-sse build without VR",
       "configuration": "Debug"
     },
     {
       "name": "relwithdebinfo-novr",
       "displayName": "RelWithDebInfo NG-NoVR",
       "configurePreset": "no-vr",
+      "description": "Force clibng-sse build without VR",
       "configuration": "RelWithDebInfo"
     },
     {
       "name": "release-vr",
       "displayName": "Release VR",
       "configurePreset": "vr",
+      "description": "Force clibng-sse build with VR",
       "configuration": "Release"
     },
     {
       "name": "debug-vr",
       "displayName": "Debug VR",
       "configurePreset": "vr",
+      "description": "Force clibng-sse build with VR",
       "configuration": "Debug"
     },
     {
       "name": "relwithdebinfo-vr",
       "displayName": "RelWithDebInfo VR",
       "configurePreset": "vr",
+      "description": "Force clibng-sse build with VR",
       "configuration": "RelWithDebInfo"
     }
   ],
