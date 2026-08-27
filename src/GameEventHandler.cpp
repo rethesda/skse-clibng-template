@@ -7,9 +7,9 @@
 namespace plugin {
     void GameEventHandler::onLoad() {
         logger::info("onLoad()");
-        if (BUILDOPTIONS.boostFound) {
+#if BOOST_FOUND
             logger::info("boost found -- {}", boost::algorithm::power(2, 4));
-        }
+#endif
         Hooks::install();
     }
 
