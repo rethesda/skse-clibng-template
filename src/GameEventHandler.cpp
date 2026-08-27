@@ -1,9 +1,15 @@
 #include "GameEventHandler.h"
 #include "Hooks.h"
+#if BOOST_FOUND
+#include <boost/algorithm/algorithm.hpp>
+#endif
 
 namespace plugin {
     void GameEventHandler::onLoad() {
         logger::info("onLoad()");
+        if (BUILDOPTIONS.boostFound) {
+            logger::info("boost found -- {}", boost::algorithm::power(2, 4));
+        }
         Hooks::install();
     }
 

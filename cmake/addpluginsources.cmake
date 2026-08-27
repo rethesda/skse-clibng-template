@@ -8,11 +8,6 @@ configure_file(
 	${CMAKE_CURRENT_BINARY_DIR}/cmake/Plugin.h
 	@ONLY)
 
-configure_file(
-	${CMAKE_CURRENT_SOURCE_DIR}/cmake/BuildOptions.h.in
-	${CMAKE_CURRENT_BINARY_DIR}/cmake/BuildOptions.h
-	@ONLY)
-
 file(GLOB_RECURSE PUBLIC_HEADER_FILES
 	LIST_DIRECTORIES false
 	CONFIGURE_DEPENDS

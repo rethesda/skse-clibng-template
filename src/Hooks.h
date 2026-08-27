@@ -36,7 +36,7 @@ namespace plugin {
                     static inline REL::RelocationID srcFunc = REL::RelocationID{35552, 36551};
 
                     static void install() {
-                        // Hooking::writeDetour<QuitGameDetoursHook>();
+                        Hooking::writeDetour<QuitGameDetoursHook>();
                     }
             };
     };

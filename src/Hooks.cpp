@@ -2,6 +2,7 @@
 namespace plugin {
     void Hooks::install() {
         QuitGameHook::install();
+        QuitGameDetoursHook::install();
     }
 
     void Hooks::quitGame() {

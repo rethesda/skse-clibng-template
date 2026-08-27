@@ -61,8 +61,9 @@ struct Hooking {
             } else {
                 SKSE::log::error("Failed to install hook");
             }
+            static_assert(BUILDOPTIONS.detoursFound, "DETOURS FOUND");
 #else
-            static_assert(buildOptions.detoursFound, "DETOURS NOT FOUND");
+            static_assert(!BUILDOPTIONS.detoursFound, "DETOURS NOT FOUND");
 #endif
         }
 };
